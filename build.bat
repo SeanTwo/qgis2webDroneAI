@@ -27,8 +27,8 @@ if exist "%zipFile%" (
 :: Create the qgis2web folder inside outputPlugin
 mkdir "%targetFolder%"
 
-:: Copy all files and folders (excluding the .github folder) to the qgis2web folder
-robocopy . "%targetFolder%" /mir /xd "%targetFolder%" ".github" /njh /njs
+:: Copy all files and folders (excluding the .github folder and .gitignore file) to the qgis2web folder
+robocopy . "%targetFolder%" /mir /xd "%targetFolder%" ".github" /xf ".gitignore" /njh /njs
 
 :: Compress the qgis2web folder itself (not just its contents) into QGIS2web.zip using 7-Zip
 7z a "%zipFile%" "%targetFolder%"
