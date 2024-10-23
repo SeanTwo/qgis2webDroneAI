@@ -1,4 +1,7 @@
 /* required styles */
+img {
+	height: 100pt;
+}
 
 .leaflet-pane,
 .leaflet-tile,
