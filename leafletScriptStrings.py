@@ -264,10 +264,10 @@ def popupScript(safeLayerName, popFuncs, highlight, popupsOnHover):
         if popupsOnHover:
             popup += """
                     if (typeof layer.closePopup == 'function') {
-                        layer.closePopup();
+                        setTimeout(() => {layer.closePopup();}, 5000);
                     } else {
                         layer.eachLayer(function(feature){
-                            feature.closePopup()
+                            setTimeout(() => {feature.closePopup();}, 5000);
                         });
                     }"""
         popup += """
