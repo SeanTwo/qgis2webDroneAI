@@ -131,6 +131,8 @@ class LeafletWriter(Writer):
         outputProjectFileName = os.path.join(outputProjectFileName,
                                              'qgis2web_' + stamp)
         outputIndex = os.path.join(outputProjectFileName, 'map.html')
+        outputLandingPage = os.path.join(outputProjectFileName, 'index.html')
+        
 
         minify = params["Data export"]["Minify GeoJSON files"]
         precision = params["Data export"]["Precision"]
@@ -382,6 +384,11 @@ class LeafletWriter(Writer):
                            measure, matchCRS, layerSearch, filterItems, canvas,
                            locate, new_src, template, feedback, useMultiStyle,
                            useHeat, useShapes, useOSMB, useWMS, useWMTS, useVT)
+            with open(pluginDir + os.sep + 'templates' + os.sep + 'index.html' ,'r') as firstfile, open(outputLandingPage,'a') as secondfile:
+                # read content from first file
+                for line in firstfile:
+                        # append content to second file
+                        secondfile.write(line)
         except Exception:
             QgsMessageLog.logMessage(traceback.format_exc(),
                                      "qgis2web", level=Qgis.Critical)

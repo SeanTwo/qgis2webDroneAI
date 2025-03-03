@@ -48,6 +48,7 @@ def writeFoldersAndFiles(pluginDir, feedback, outputProjectFileName,
     shutil.copyfile(jsDir + 'labels.js',
                     jsStore + 'labels.js')
     shutil.copyfile(jsDir + 'leaflet.js', jsStore + 'leaflet.js')
+    shutil.copytree(jsDir + 'CustomJS', jsStore + 'CustomJS')
     shutil.copyfile(jsDir + 'leaflet.js.map', jsStore + 'leaflet.js.map')
     shutil.copyfile(cssDir + 'leaflet.css', cssStore + 'leaflet.css')
     if layersList != "None":
