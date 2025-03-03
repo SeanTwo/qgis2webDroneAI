@@ -130,7 +130,7 @@ class LeafletWriter(Writer):
         stamp = datetime.now().strftime("%Y_%m_%d-%H_%M_%S_%f")
         outputProjectFileName = os.path.join(outputProjectFileName,
                                              'qgis2web_' + stamp)
-        outputIndex = os.path.join(outputProjectFileName, 'index.html')
+        outputIndex = os.path.join(outputProjectFileName, 'map.html')
 
         minify = params["Data export"]["Minify GeoJSON files"]
         precision = params["Data export"]["Precision"]

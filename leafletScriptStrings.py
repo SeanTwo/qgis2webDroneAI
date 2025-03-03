@@ -242,7 +242,7 @@ def popFuncsScript(table):
 			layer.on('popupopen', function(e) {
 				addClassToPopupIfMedia(content, e.popup);
 			});
-			layer.bindPopup(content, { maxHeight: 400 });""" % table
+			layer.bindPopup(content, { maxHeight: 400, offset: L.point(-200, -20) });""" % table
     return popFuncs
 
 

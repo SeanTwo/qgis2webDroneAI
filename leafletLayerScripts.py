@@ -323,13 +323,13 @@ def getPopups(layer, safeLayerName, highlight, popupsOnHover, popup, vts,
             row += "(feature.properties[\'" + str(field) + "\'] "
             row += "!== null ? "
             if (editorWidget == 'ExternalResource'):
-                row += "'<a href=\"images/' + "
+                row += "'<a href=\"' + "
                 row += "String(feature.properties['" + str(field)
-                row += r"']).replace(/[\\\/:]/g, '_').trim()"
+                row += r"'])"
                 row += "+ '\" target=\"_blank\">" #TODO: Fix this line
-                row += "<img src=\"images/' + "
+                row += "<img src=\"' + "
                 row += "String(feature.properties['" + str(field)
-                row += r"']).replace(/[\\\/:]/g, '_').trim()"
+                row += r"'])"
                 row += " + '\"></a>' : '') + '"
             else:
                 row += "autolinker.link("
