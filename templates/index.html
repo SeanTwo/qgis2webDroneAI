@@ -35,42 +35,67 @@
         display: flex;
         justify-content: space-between;
         }
+
+        #collapseContainer {
+            position: absolute; /* Ensures it's inside the correct layout */
+            left: 60%;
+            top: 0;
+            width: 2%;
+            height: 100%;
+            display: flex;
+        }
+        
         </style>
         <title></title>
     </head>
     <body>
         <script src="js/CustomJS/WindowControl.js"></script>
-        <div id="left", class="split left", style="width: 60%">
+    
+        <div id="left" class="split left" style="width: 60%;">
             <iframe src="./map.html" name="iframe_map" height="100%" width="100%" background="transparent"></iframe>
+            <p>Test</p>
         </div>
-        <div id="right", class="split right splitDiv", style="width: 40%">
-            <button id="collapseButton", style="width: 5%; height: 100%", onclick="changeWidth()">></button>
-            <iframe id="infoDisp", src="./InfoViewer.html?index=1" name="iframe_bush_data" style="width: 100%; height: 100%"></iframe>
+    
+        <div id="collapseContainer">
+            <button id="collapseButton" style="width: 100%; height: 100%; position: relative;" onclick="changeWidth()">></button>
         </div>
+        
+        <div id="right" class="split right splitDiv" style="width: 38%; display: flex; flex-direction: column;">
+            <nav style="background-color: #333; padding: 5px;">
+                <ul style="list-style-type: none; margin: 0; padding: 0; overflow: hidden; display: flex;">
+                    <li style="margin-right: 10px;">
+                        <a href="./InfoViewer.html?index=1" target="iframe_bush_data" id="bushLink" style="color: white; text-decoration: none; padding: 10px;">Bushes</a>
+                    </li>
+                    <li>
+                        <a href="blank" target="iframe_bush_data" style="color: white; text-decoration: none; padding: 10px;">Web ODM</a>
+                    </li>
+                </ul>
+            </nav>
+            <iframe id="infoDisp" src="./InfoViewer.html?index=1" name="iframe_bush_data" style="width: 100%; height: 100%; flex-grow: 1;"></iframe>
+        </div>
+
         <script>
+            bushIndex = 1;
+
             if (window.addEventListener) {
                 window.addEventListener("message", onMessage, false);        
-            } 
-            else if (window.attachEvent) {
+            } else if (window.attachEvent) {
                 window.attachEvent("onmessage", onMessage, false);
             }
-
+    
             function onMessage(event) {
-                // Check sender origin to be trusted
                 if (event.origin !== origin) return;
-
                 var data = event.data;
-
-                if (typeof(window[data.func]) == "function") {
+                if (typeof window[data.func] === "function") {
                     window[data.func].call(null, data.message);
+                    bushIndex = data.index;
+                    document.getElementById("bushLink").href = "./InfoViewer.html?index=" + String(bushIndex);
                 }
             }
-
-            // Function to be called from iframe
+    
             function parentFunc(message) {
-                if(collapsed)
-                { changeWidth(); }
+                if (collapsed) { changeWidth(); }
             }
         </script>
-    </body>
+    </body>    
 </html>

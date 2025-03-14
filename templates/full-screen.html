@@ -56,7 +56,8 @@
             function openParentDataView() {
                 window.parent.postMessage({
                     'func': 'parentFunc',
-                    'message': 'Message text from iframe.'
+                    'message': 'Message text from iframe.',
+                    'index' : index
                 }, origin);
             }
             
